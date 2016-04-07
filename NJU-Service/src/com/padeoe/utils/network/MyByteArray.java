@@ -1,7 +1,8 @@
 package com.padeoe.utils.network;
 
 /**
- * Created by Nifury on 2015/12/17.
+ * @author Nifury
+ * Date: 2015/12/17
  */
 public class MyByteArray {
     private byte[] buffer = new byte[4096];

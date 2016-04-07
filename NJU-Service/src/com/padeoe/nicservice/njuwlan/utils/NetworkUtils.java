@@ -6,7 +6,9 @@ import java.net.InetAddress;
 import java.util.concurrent.*;
 
 /**
- * Created by padeoe on 2015/9/23.
+ * 该类用于提供{@link com.padeoe.nicservice.njuwlan}中和网络相关的通用方法，重新打包了{@link com.padeoe.utils.network.MyHttpRequest}中的方法
+ * @author padeoe
+ * Date: 2015/9/23
  */
 public class NetworkUtils {
     /**
@@ -24,7 +26,7 @@ public class NetworkUtils {
      * @param postData 发送的数据
      * @param URL 服务器地址
      *@param timeout 超时时间
-     * @returnPost
+     * @return Post返回的数据
      */
     public static String connectAndPost(String postData, String URL, int timeout) {
         return MyHttpRequest.post(postData, URL, null, "UTF-8", "UTF-8", timeout);
@@ -36,7 +38,7 @@ public class NetworkUtils {
      * @param cookie cookie
      * @param URL 服务器地址
      * @param timeout 超时时间
-     * @return
+     * @return 服务器返回的数据
      */
     public static String postWithCookie(String postData, String cookie, String URL, int timeout) {
         return MyHttpRequest.postWithCookie(postData, URL, null, cookie, "UTF-8", "UTF-8", timeout);
@@ -47,7 +49,7 @@ public class NetworkUtils {
      * @param postData 发送的数据
      * @param URL 服务器地址
      * @param timeout 超时时间
-     * @return
+     * @return 服务器返回的数据
      */
     public static String[] postAndGetCookie(String postData, String URL, int timeout) {
         return MyHttpRequest.postAndGetCookie(postData, URL, null, "UTF-8", "UTF-8", timeout);
@@ -55,7 +57,7 @@ public class NetworkUtils {
 
     /**
      * 获取当前p.nju.edu.cn的IP
-     * @return DNS查询到的IP,若DNS查询失败则返回默认IP
+     * @return DNS查询到的IP,若DNS查询失败则会调用 {@link #getDefaultPortalIP()}返回默认IP
      */
     public static String getCurrentPortalIP() {
         try {
@@ -112,7 +114,7 @@ public class NetworkUtils {
     /**
      * 查看DNS解析p.nju.edu.cn失败时使用的默认IP
      *
-     * @return
+     * @return DNS解析p.nju.edu.cn失败时使用的默认IP
      */
     public static String getDefaultPortalIP() {
         return defaultPortalIP;
@@ -130,7 +132,7 @@ public class NetworkUtils {
     /**
      * 查看DNS解析bras.nju.edu.cn失败时使用的默认IP
      *
-     * @return
+     * @return DNS解析bras.nju.edu.cn失败时使用的默认IP
      */
     public static String getDefaultBrasIP() {
         return defaultBrasIP;

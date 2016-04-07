@@ -5,12 +5,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.math.BigInteger;
 
 /**
- * Created by padeoe on 4/24/15.
- * Modified on 9/17/2015
- */
-
-/**
- * 当前登陆用户的简要信息,登陆p.nju.edu.cn时获得,是ReturnData的一部分
+ * 该类表示的信息是用户登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>时返回的数据{@link ReturnData}的一部分，表示了当前登陆用户的简要信息
+ * 具体包当前用户的用户名，服务名，余额等信息
+ * @author padeoe
+ * Date: 2015/4/24
  */
 public class UserInfo {
     @JSONField(name = "username")

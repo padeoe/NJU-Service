@@ -4,11 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * Created by padeoe on 4/24/15.
- */
-
-/**
- * 登陆返回信息
+ * 该类表示用户登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>时返回的数据，
+ * 具体包括响应码，响应信息，以及用户信息对象{@link UserInfo}
+ * @author padeoe
+ * Date: 2015/4/24
  */
 public class ReturnData {
     @JSONField(name = "reply_code")
@@ -29,8 +28,7 @@ public class ReturnData {
 
     public static ReturnData getFromJson(String jsonobject) {
         try {
-            ReturnData returnData = JSON.parseObject(jsonobject, ReturnData.class);
-            return returnData;
+            return JSON.parseObject(jsonobject, ReturnData.class);
         } catch (Exception e) {
             System.out.println(e);
             return null;

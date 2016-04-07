@@ -7,23 +7,26 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by padeoe on 4/20/15.
- * Modified on 9/15/2015
+ * 该类用于提供<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的接口。
+ * 包括了登陆，下线等功能。
+ * 该类使用单例模式，因为该类对一个用户的账号进行实例化，而单个终端只支持一个用户账户同时在线。
  *
- * @author yus, com
+ * @author padeoe
+ *         Date: 2015/9/15
+ * @author Nifury, padeoe
  */
 public class LoginService {
     private static LoginService loginService;
     /**
-     * 缓存的p.nju.edu.cn的服务器IP，为null时表示当前无缓存
+     * 缓存的<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的服务器IP，为null时表示当前无缓存
      */
-    private String cachedPortalIP=null;
+    private String cachedPortalIP = null;
     /**
-     * 用户为p.nju.edu.cn设置指定的IP,为null时表示用户未指定
+     * 用户为<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>设置指定的IP,为null时表示用户未指定
      */
-    private String settingsPortalIP=null;
+    private String settingsPortalIP = null;
     /**
-     * 向p.nju.edu.cn服务器发送消息的超时时间
+     * 向<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>服务器发送消息的超时时间
      */
     private int timeout = 200;
 
@@ -50,40 +53,38 @@ public class LoginService {
         System.out.println("正在获取Challenge");
         String result = NetworkUtils.connectAndPost("", "http://" + getPortalIP() + "/portal_io/getchallenge", timeout);
         if (result != null && result.startsWith("{\"reply_msg\":\"操作成功\"")) {
-            return new String[]{result.substring(result.indexOf("\"challenge\":\"") + 13, result.indexOf("\",\"reply_code\"")),result};
+            return new String[]{result.substring(result.indexOf("\"challenge\":\"") + 13, result.indexOf("\",\"reply_code\"")), result};
         }
-        return new String[]{null,result};
+        return new String[]{null, result};
     }
 
 
     /**
-     * 登陆p.nju.edu.cn,旧版,不加密传输
+     * 登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>,旧版,不加密传输
      *
-     * @param username
-     * @param password
-     * @param timeout
+     * @param username <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的用户名
+     * @param password <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的密码
+     * @param timeout 超时时间
      * @return 返回的字符串的JSON解析
      */
     @Deprecated
     public String oldConnect(String username, String password, int timeout) {
         String postdata = "action=login&username=" + username + "&password=" + password;
-        String result = NetworkUtils.connectAndPost(postdata, "http://" + getPortalIP() + "/portal_io/login", timeout);
-        return result;
+        return NetworkUtils.connectAndPost(postdata, "http://" + getPortalIP() + "/portal_io/login", timeout);
     }
 
     /**
-     * 登陆p.nju.edu.cn，新版，加密传输
+     * 登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>，新版，加密传输
      *
-     * @param username 用户名
-     * @param password 密码
-     * @return
+     * @param username <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的用户名
+     * @param password <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的密码
+     * @return 服务器返回数据
      */
     public String connect(String username, String password) {
         String challenge[] = getChallenge();
         if (challenge[0] != null) {
             String postdata = "username=" + username + "&password=" + createChapPassword(password, challenge[0]) + "&challenge=" + challenge[0];
-            String result = NetworkUtils.connectAndPost(postdata, "http://" + getPortalIP() + "/portal_io/login", timeout);
-            return result;
+            return NetworkUtils.connectAndPost(postdata, "http://" + getPortalIP() + "/portal_io/login", timeout);
         } else {
             return challenge[1];
         }
@@ -91,21 +92,20 @@ public class LoginService {
     }
 
     /**
-     * 从p.nju.edu.cn下线
+     * 从<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>下线
      *
-     * @return
+     * @return 服务器返回的数据
      */
     public String disconnect() {
-        String result = NetworkUtils.connectAndPost("", "http://" + getPortalIP() + "/portal_io/logout", timeout);
-        return result;
+        return NetworkUtils.connectAndPost("", "http://" + getPortalIP() + "/portal_io/logout", timeout);
     }
 
     /**
      * 创建chap密码
      *
-     * @param password 密码明文
+     * @param password  密码明文
      * @param challenge 密码密文
-     * @return
+     * @return 服务器返回数据
      */
     private static String createChapPassword(String password, String challenge) {
         byte[] str = new byte[password.length() + 1 + 16];
@@ -121,18 +121,17 @@ public class LoginService {
             str[counter++] = ((byte) dec);
         }
         String hash = md5(str);
-        String chappassword = ((id < 16) ? "0" : "") + Integer.toHexString(id) + hash;
-        return chappassword;
+        return ((id < 16) ? "0" : "") + Integer.toHexString(id) + hash;
     }
 
     /**
      * 计算字符串的md5
      *
-     * @param str
-     * @return
+     * @param str byte数组
+     * @return md5值
      */
     private static String md5(byte str[]) {
-        MessageDigest m = null;
+        MessageDigest m;
         try {
             m = MessageDigest.getInstance("MD5");
             m.reset();
@@ -153,80 +152,76 @@ public class LoginService {
     /**
      * 根据返回消息判断是否登陆成功
      *
-     * @param result {@link LoginService#connect(String, String)}或{@link LoginService#oldConnect(String, String, String)}返回值
-     * @return
+     * @param result {@link LoginService#connect(String, String)}或{@link LoginService#oldConnect(String, String, int)}返回值
+     * @return 是否登陆成功
      */
     public static boolean isLoginSuccess(String result) {
-        if (result.startsWith("{\"reply_code\":1") || result.startsWith("{\"reply_code\":6")) {
-            return true;
-        }
-        return false;
+        return result.startsWith("{\"reply_code\":1") || result.startsWith("{\"reply_code\":6");
     }
 
     /**
      * 根据返回消息判断是否下线成功
      *
      * @param result {@link LoginService#disconnect()}返回值
-     * @return
+     * @return 是否下线成功
      */
     public static boolean isLogoutSuccess(String result) {
-        if (result.startsWith("{\"reply_code\":101")) {
-            return true;
-        }
-        return false;
+        return result.startsWith("{\"reply_code\":101");
     }
 
     /**
-     * 查询是否当前在线
-     * @return
+     * 查询当前是否已登录<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>
+     *
+     * @return 表示当前是否在线
      */
     public boolean isPortalOnline() {
         String result = NetworkUtils.connectAndPost("", "http://" + getPortalIP() + "/portal_io/getinfo", 200);
-        if (result.endsWith("\"reply_code\":0,\"reply_msg\":\"操作成功\"}\n")) {
-            return true;
-        }
-        return false;
+        return result.endsWith("\"reply_code\":0,\"reply_msg\":\"操作成功\"}\n");
     }
 
     /**
-     * 获取缓存的p.nju.edu.cn的IP
-     * @return
+     * 获取缓存的<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的IP
+     *
+     * @return 当前缓存的IP，如果不存在将会调用{@link NetworkUtils#getCurrentPortalIP()}当即解析
      */
-    private String getCachedPortalIP(){
-        if(cachedPortalIP==null){
-            return cachedPortalIP=NetworkUtils.getCurrentPortalIP();
+    private String getCachedPortalIP() {
+        if (cachedPortalIP == null) {
+            return cachedPortalIP = NetworkUtils.getCurrentPortalIP();
         }
-        System.out.println("获得缓存IP:"+cachedPortalIP);
+        System.out.println("获得缓存IP:" + cachedPortalIP);
         return cachedPortalIP;
     }
 
     /**
-     * 获取p.nju.edu.cn的服务器IP地址，查询方式优先级如下：
+     * 获取<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的服务器IP地址，查询方式优先级如下：
      * 查询用户设置的IP，
      * 查询缓存IP，
      * DNS解析获得IP，
      * 默认IP
-     * @return p.nju.edu.cn的服务器IP地址
+     *
+     * @return <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的服务器IP地址
      */
-    private String getPortalIP(){
-        if(settingsPortalIP==null){
+    private String getPortalIP() {
+        if (settingsPortalIP == null) {
             return getCachedPortalIP();
         }
-        System.out.println("获用户指定IP:"+settingsPortalIP);
+        System.out.println("获用户指定IP:" + settingsPortalIP);
         return settingsPortalIP;
     }
 
     /**
-     * 获取用户设置的p.nju.edu.cn的IP地址
-     * @return 用户设置的p.nju.edu.cn的IP地址
+     * 获取用户设置的<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的IP地址
+     *
+     * @return 用户设置的 <a href="http://p.nju.edu.cn"> 南京大学网络认证系统</a>的IP地址
      */
     public String getSettingsPortalIP() {
         return settingsPortalIP;
     }
 
     /**
-     * 设置用户设置的p.nju.edu.cn的IP地址
-     * @param settingsPortalIP 用户设置的p.nju.edu.cn的IP地址
+     * 设置用户设置的<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的IP地址
+     *
+     * @param settingsPortalIP 用户设置的<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的IP地址
      */
     public void setSettingsPortalIP(String settingsPortalIP) {
         this.settingsPortalIP = settingsPortalIP;
