@@ -1,7 +1,5 @@
 package com.padeoe.utils;
 
-import java.util.Date;
-
 public class MyDate {
     private int year;
     private int month;

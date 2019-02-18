@@ -2,8 +2,6 @@ package com.padeoe.nicservice.njuwlan.object.portal;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import java.math.BigInteger;
-
 /**
  * 该类表示的信息是用户登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>时返回的数据{@link ReturnData}的一部分，表示了当前登陆用户的简要信息
  * 具体包当前用户的用户名，服务名，余额等信息

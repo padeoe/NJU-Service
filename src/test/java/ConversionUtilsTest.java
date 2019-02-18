@@ -1,10 +1,6 @@
-package test;
-
 import com.padeoe.nicservice.njuwlan.utils.ConversionUtils;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by padeoe on 2015/12/17.

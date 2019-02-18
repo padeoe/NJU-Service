@@ -4,8 +4,6 @@ package com.padeoe.nicservice.njuwlan.object.bras;
  * Created by padeoe on 2015/9/23.
  */
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 /**
  * 基类
  */
