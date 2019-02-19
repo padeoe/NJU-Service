@@ -16,13 +16,21 @@ public class MyByteArray {
         }
     }
 
-    public void addOffset(int delta) { position += delta; }
+    public void addOffset(int delta) {
+        position += delta;
+    }
 
-    public byte[] getBuffer() { return buffer; }
+    public byte[] getBuffer() {
+        return buffer;
+    }
 
-    public int getOffset() { return position; }
+    public int getOffset() {
+        return position;
+    }
 
-    public int getSize() { return position; }
+    public int getSize() {
+        return position;
+    }
 
     public static void main(String[] args) {
         MyByteArray array = new MyByteArray();

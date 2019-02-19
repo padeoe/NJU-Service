@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  * 该类使用单例模式，因为该类对一个用户的账号进行实例化，而单个终端只支持一个用户账户同时在线。
  *
  * @author padeoe
- *         Date: 2015/9/15
+ * Date: 2015/9/15
  * @author Nifury, padeoe
  */
 public class LoginService {
@@ -64,7 +64,7 @@ public class LoginService {
      *
      * @param username <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的用户名
      * @param password <a href="http://p.nju.edu.cn">南京大学网络认证系统</a>的密码
-     * @param timeout 超时时间
+     * @param timeout  超时时间
      * @return 返回的字符串的JSON解析
      */
     @Deprecated

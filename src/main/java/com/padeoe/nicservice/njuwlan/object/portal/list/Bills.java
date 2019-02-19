@@ -8,6 +8,7 @@ import com.padeoe.nicservice.njuwlan.object.portal.row.BillsRow;
 /**
  * 该类表示<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>中查询账单信息获得的列表
  * 具体包含一个包含{@link BillsRow}对象的数组以及账单列表的总页数
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -35,13 +36,12 @@ public class Bills extends Base {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Bills:[\n" +
-                "total = "+total+",\n" +
-                "reply_code = "+reply_code+",\n" +
-                "reply_msg = "+reply_msg+",\n"+
-                billsRows.toString()+",\n]\n";
+                "total = " + total + ",\n" +
+                "reply_code = " + reply_code + ",\n" +
+                "reply_msg = " + reply_msg + ",\n" +
+                billsRows.toString() + ",\n]\n";
     }
 }
 

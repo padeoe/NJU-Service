@@ -6,6 +6,7 @@ import com.padeoe.nicservice.njuwlan.object.portal.row.BasicInfoRow;
 
 /**
  * 该类表示<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>中查询当前登陆用户获得的用户信息列表
+ *
  * @author padeoe
  * Date: 2015/9/23
  */

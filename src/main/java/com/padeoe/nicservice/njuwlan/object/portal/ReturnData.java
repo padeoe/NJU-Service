@@ -6,6 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 该类表示用户登陆<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>时返回的数据，
  * 具体包括响应码，响应信息，以及用户信息对象{@link UserInfo}
+ *
  * @author padeoe
  * Date: 2015/4/24
  */

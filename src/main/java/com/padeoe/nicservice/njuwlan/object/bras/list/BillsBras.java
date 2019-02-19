@@ -8,6 +8,7 @@ import com.padeoe.nicservice.njuwlan.object.bras.row.BillsRowBras;
 /**
  * 该类表示<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>中查询账单信息获得的列表
  * 具体包含一个包含{@link BillsRowBras}对象的数组以及账单列表的总页数
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -16,6 +17,7 @@ public class BillsBras extends Base {
     private BillsRowBras[] billsRowBrases;
     @JSONField(name = "page")
     protected String pageNum;
+
     public BillsBras() {
     }
 
@@ -44,16 +46,15 @@ public class BillsBras extends Base {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "BillsBras:[\n" +
-                "max_page = "+max_page+",\n" +
-                "reply_code = "+reply_code+",\n" +
-                "reply_msg = "+reply_msg+",\n"+
-                "pageNum = "+pageNum+",\n"+
-                "request_time = "+request_time+",\n"+
-                "request_url = "+request_url+",\n"+
-                billsRowBrases.toString()+",\n]\n";
+                "max_page = " + max_page + ",\n" +
+                "reply_code = " + reply_code + ",\n" +
+                "reply_msg = " + reply_msg + ",\n" +
+                "pageNum = " + pageNum + ",\n" +
+                "request_time = " + request_time + ",\n" +
+                "request_url = " + request_url + ",\n" +
+                billsRowBrases.toString() + ",\n]\n";
     }
 }
 

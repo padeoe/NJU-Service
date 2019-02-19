@@ -26,7 +26,8 @@ public class ICRoomUser {
     /**
      * 默认构造函数,因为fastjson解析对象的需要，不可删除
      */
-    public ICRoomUser(){}
+    public ICRoomUser() {
+    }
 
     public ICRoomUser(String id, String name, String label_major, String student_id, String phone, String tel, String email) {
         this.id = id;
@@ -38,7 +39,7 @@ public class ICRoomUser {
         this.email = email;
     }
 
-    public static ICRoomUser getFromJson(String json){
+    public static ICRoomUser getFromJson(String json) {
         try {
             return JSON.parseObject(json, ICRoomUser.class);
         } catch (Exception e) {

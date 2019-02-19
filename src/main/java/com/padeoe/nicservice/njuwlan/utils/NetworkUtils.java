@@ -7,6 +7,7 @@ import java.util.concurrent.*;
 
 /**
  * 该类用于提供{@link com.padeoe.nicservice.njuwlan}中和网络相关的通用方法，重新打包了{@link com.padeoe.utils.network.MyHttpRequest}中的方法
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -24,8 +25,8 @@ public class NetworkUtils {
      * Post请求(仅适用于p.nju.edu.cn及bras.nju.edu.cn)
      *
      * @param postData 发送的数据
-     * @param URL 服务器地址
-     *@param timeout 超时时间
+     * @param URL      服务器地址
+     * @param timeout  超时时间
      * @return Post返回的数据
      */
     public static String connectAndPost(String postData, String URL, int timeout) {
@@ -34,10 +35,11 @@ public class NetworkUtils {
 
     /**
      * Post请求,含cookie(仅适用于p.nju.edu.cn及bras.nju.edu.cn)
+     *
      * @param postData 发送的数据
-     * @param cookie cookie
-     * @param URL 服务器地址
-     * @param timeout 超时时间
+     * @param cookie   cookie
+     * @param URL      服务器地址
+     * @param timeout  超时时间
      * @return 服务器返回的数据
      */
     public static String postWithCookie(String postData, String cookie, String URL, int timeout) {
@@ -46,9 +48,10 @@ public class NetworkUtils {
 
     /**
      * Post请求并获得cookie(仅适用于p.nju.edu.cn及bras.nju.edu.cn)
+     *
      * @param postData 发送的数据
-     * @param URL 服务器地址
-     * @param timeout 超时时间
+     * @param URL      服务器地址
+     * @param timeout  超时时间
      * @return 服务器返回的数据
      */
     public static String[] postAndGetCookie(String postData, String URL, int timeout) {
@@ -57,7 +60,8 @@ public class NetworkUtils {
 
     /**
      * 获取当前p.nju.edu.cn的IP
-     * @return DNS查询到的IP,若DNS查询失败则会调用 {@link #getDefaultPortalIP()}返回默认IP
+     *
+     * @return DNS查询到的IP, 若DNS查询失败则会调用 {@link #getDefaultPortalIP()}返回默认IP
      */
     public static String getCurrentPortalIP() {
         try {
@@ -70,7 +74,8 @@ public class NetworkUtils {
 
     /**
      * 获取当前bras.nju.edu.cn的IP
-     * @return DNS查询到的IP,若DNS查询失败则返回默认IP
+     *
+     * @return DNS查询到的IP, 若DNS查询失败则返回默认IP
      */
     public static String getCurrentBrasIP() {
         try {
@@ -81,31 +86,30 @@ public class NetworkUtils {
     }
 
     /**
-     * 解析域名IP
+     * 解析域名
      *
-     * @param URL     域名
+     * @param domain  域名
      * @param timeout 超时时间
-     * @return IP
+     * @return 域名对应的 ip
+     * @throws Exception 解析错误
      */
-    public static String DNS(final String URL, int timeout) throws InterruptedException, ExecutionException, TimeoutException {
+    public static String DNS(final String domain, int timeout) throws Exception {
         class Task implements Callable<String> {
             @Override
             public String call() throws java.net.UnknownHostException {
                 InetAddress[] inetAddresses;
-                inetAddresses = InetAddress.getAllByName(URL);
+                inetAddresses = InetAddress.getAllByName(domain);
                 return inetAddresses[0].getHostAddress();
             }
         }
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<String> future = executor.submit(new Task());
         try {
-            System.out.println("开始解析DNS");
             String result = future.get(timeout, TimeUnit.MILLISECONDS);
             executor.shutdownNow();
             return result;
         } catch (TimeoutException | InterruptedException | ExecutionException e) {
             future.cancel(true);
-            System.out.println("解析失败");
             executor.shutdownNow();
             throw e;
         }

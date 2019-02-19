@@ -10,6 +10,7 @@ import java.util.Calendar;
 /**
  * 该类实现了<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>的各类查询功能接口。
  * 包括查询用户信息，当前在线设备，详单信息，认证信息，充值信息，账单信息等。
+ *
  * @author padeoe
  * Date: 2015/9/24
  */
@@ -28,6 +29,7 @@ public class OfflineQueryService implements DetailQuery {
 
     /**
      * 通过用户名密码构造
+     *
      * @param username 用户名:学号/工号
      * @param password <a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>的密码
      * @throws LoginException 登陆失败

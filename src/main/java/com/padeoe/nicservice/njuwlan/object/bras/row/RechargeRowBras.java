@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 该类表示<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>中查询充值记录获得的充值记录列表中具体的一条(行)信息
  * 具体包括充值金额，充值时间等信息
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -70,6 +71,7 @@ public class RechargeRowBras {
     public void setOper_username(String oper_username) {
         this.oper_username = oper_username;
     }
+
     @Override
     public String toString() {
         return "ClassPojo " + ", amount = " + amount + ", remark = " + remark + ", oper_time = " + oper_time + ", oper_id = " + oper_id + ", account_no = " + account_no + "]";

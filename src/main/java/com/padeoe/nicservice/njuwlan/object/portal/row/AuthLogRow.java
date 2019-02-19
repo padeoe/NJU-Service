@@ -5,6 +5,7 @@ import com.padeoe.nicservice.njuwlan.object.bras.row.AuthLogRowBras;
 /**
  * 该类表示<a href="http://p.nju.edu.cn">南京大学网络认证系统</a>中查询登陆日志详单获得的详单信息列表中具体的一条(行)信息
  * 包括登陆区域，mac地址，登陆返回信息，用户名等大量信息
+ *
  * @author padeoe
  * Date: 2015/9/23
  */

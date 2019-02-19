@@ -9,7 +9,7 @@ import java.util.HashMap;
  * 该类用于实现<a href="http://book.njulib.cn/">南京大学图书馆Book+</a>的接口
  *
  * @author padeoe
- *         Date: 2016/3/10.
+ * Date: 2016/3/10.
  */
 public class BookPlus {
     private String cookie = null;

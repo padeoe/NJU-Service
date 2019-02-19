@@ -3,6 +3,7 @@ package com.padeoe.nicservice.njuwlan.object.bras.row;
 /**
  * 该类表示<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>中查询账单信息获得的详单信息列表中具体的一条(行)信息
  * 具体包括起始时间，id，消费金额等信息
+ *
  * @author padeoe
  * Date: 2015/9/23
  */

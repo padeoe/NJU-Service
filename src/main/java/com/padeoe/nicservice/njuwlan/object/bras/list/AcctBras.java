@@ -6,9 +6,9 @@ import com.padeoe.nicservice.njuwlan.object.bras.Base;
 import com.padeoe.nicservice.njuwlan.object.bras.row.AcctRowBras;
 
 /**
- *
  * 该类表示<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>中查询详单信息获得的列表列表,该列表显示了每一次登陆至下线的详细信息，
  * 具体包含一个包含{@link AcctRowBras}对象的数组以及详单列表的总页数
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -22,11 +22,11 @@ public class AcctBras extends Base {
      * 详单信息列表的页号
      */
     protected String pageNum;
+
     public AcctBras() {
     }
 
     /**
-     *
      * @param jsonobject json格式的字符串
      * @return {@link AcctBras}对象
      */
@@ -55,16 +55,15 @@ public class AcctBras extends Base {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "AcctBras:[\n" +
-                "max_page = "+max_page+",\n" +
-                "reply_code = "+reply_code+",\n" +
-                "reply_msg = "+reply_msg+",\n"+
-                "pageNum = "+pageNum+",\n"+
-                "request_time = "+request_time+",\n"+
-                "request_url = "+request_url+",\n"+
-                acctRowBrases.toString()+",\n]\n";
+                "max_page = " + max_page + ",\n" +
+                "reply_code = " + reply_code + ",\n" +
+                "reply_msg = " + reply_msg + ",\n" +
+                "pageNum = " + pageNum + ",\n" +
+                "request_time = " + request_time + ",\n" +
+                "request_url = " + request_url + ",\n" +
+                acctRowBrases.toString() + ",\n]\n";
     }
 }
 

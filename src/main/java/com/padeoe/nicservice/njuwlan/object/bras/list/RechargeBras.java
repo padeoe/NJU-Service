@@ -8,6 +8,7 @@ import com.padeoe.nicservice.njuwlan.object.bras.row.RechargeRowBras;
 /**
  * 该类表示<a href="http://bras.nju.edu.cn">南京大学网络认证计费系统自助平台</a>中查询充值信息获得的列表
  * 具体包含一个包含{@link RechargeRowBras}对象的数组以及充值列表的总页数
+ *
  * @author padeoe
  * Date: 2015/9/23
  */
@@ -32,7 +33,7 @@ public class RechargeBras extends Base {
         this.rechargeRowBrases = rechargeRowBrases;
     }
 
-    public static RechargeBras getFromJson(String jsonobject){
+    public static RechargeBras getFromJson(String jsonobject) {
         try {
             RechargeBras rechargeBras = JSON.parseObject(jsonobject, RechargeBras.class);
             return rechargeBras;
@@ -42,15 +43,14 @@ public class RechargeBras extends Base {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "RechargeBras:[\n" +
-                "max_page = "+max_page+",\n" +
-                "reply_code = "+reply_code+",\n" +
-                "reply_msg = "+reply_msg+",\n"+
-                "pageNum = "+pageNum+",\n"+
-                "request_time = "+request_time+",\n"+
-                "request_url = "+request_url+",\n"+
-                rechargeRowBrases.toString()+",\n]\n";
+                "max_page = " + max_page + ",\n" +
+                "reply_code = " + reply_code + ",\n" +
+                "reply_msg = " + reply_msg + ",\n" +
+                "pageNum = " + pageNum + ",\n" +
+                "request_time = " + request_time + ",\n" +
+                "request_url = " + request_url + ",\n" +
+                rechargeRowBrases.toString() + ",\n]\n";
     }
 }
